@@ -1,11 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Figtree } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import "./globals.css";
-import LayoutProvider from "@/layout/layout-provider";
-
-const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" });
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
@@ -40,11 +36,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={figtree.variable} suppressHydrationWarning>
-      <body className={`font-sans antialiased`}>
-        <LayoutProvider>{children}</LayoutProvider>
-        <Analytics />
-      </body>
-    </html>
+    <>
+      {children}
+      <Analytics />
+    </>
   );
 }
