@@ -1,38 +1,7 @@
 import { BoardCard } from "@/components/board-card";
+import { boards, threads } from "@/constants";
 
 // Mock data for boards
-const boards = [
-  {
-    id: "cmkz9go17000ag9u9avglwiel",
-    name: "Politically Incorrect",
-    description: "Cursim vilicus acceptus.",
-    slug: "POL",
-    category: "Polictics",
-    threadCount: 123,
-    postCount: 100,
-    posts: null,
-  },
-  {
-    id: "cmkz9go18000bg9u9zwxgd9vh",
-    name: "Literature",
-    description: "Voluptas angustus alias quod censura.",
-    slug: "LIT",
-    category: "Literature",
-    threadCount: 123,
-    postCount: 100,
-    posts: null,
-  },
-  {
-    id: "cmkz9go18000cg9u996mx1eoz",
-    name: "Technology",
-    description: "Contego acervus calculus.",
-    slug: "TECH",
-    category: "Science",
-    threadCount: 123,
-    postCount: 100,
-    posts: null,
-  },
-];
 
 export default function HomePage() {
   return (
@@ -48,8 +17,22 @@ export default function HomePage() {
         </div>
         <div className="flex flex-row gap-4 flex-wrap">
           {boards.map((board) => (
-            <BoardCard key={board.id} {...board} />
+            <BoardCard
+              key={board.id}
+              id={board.id}
+              name={board.name}
+              slug={board.slug}
+              description={board.description}
+              category={board.category}
+              threadCount={
+                threads.filter((thread) => thread.boardId === board.id).length
+              }
+              postCount={
+                threads.filter((thread) => thread.boardId === board.id).length
+              }
+            />
           ))}
+          {/* postCount={threads.filter((thread) => thread.boardId === board.id).length()}))} */}
         </div>
       </main>
     </div>
